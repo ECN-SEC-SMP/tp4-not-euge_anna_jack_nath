@@ -39,17 +39,21 @@ public:
     }
 
     // Méthode de translation
-    void translate(T dx,T dy) {
-        for(Point2D<T>& p : sommets) {
-            p.translate(dx,dy);
-        }
-    }
+    void translate(T dx,T dy);
 
     // Surchage operator
-    friend std::ostream& operator<< (std::ostream &o, forme <T>const& poly) {
+    friend std::ostream& operator<< (std::ostream &o, Polygone<T>const& poly) {
         o << "Polynome[" << poly.getSommets() << "]" ;
         return o;
     }
 };
+
+
+template <typename T>
+void Polygone<T>::translate(T dx,T dy) {
+    for(Point2D<T>& p : sommets) {
+        p.translate(dx,dy);
+    }
+}
 
 #endif

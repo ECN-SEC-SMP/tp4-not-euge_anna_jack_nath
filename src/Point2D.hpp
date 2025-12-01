@@ -31,16 +31,20 @@ public:
     void setY(T y) { this->y = y; }
 
     // Méthode de translation
-    void translate(T x,T y) {
-        this->x += x;
-        this->y += y;
-    }
+    void translate(T dx,T dy);
 
     // Surchage operator
-    friend std::ostream& operator<< (std::ostream &o, point <T>const& p) {
+    friend std::ostream& operator<< (std::ostream &o, Point2D<T>const& p) {
         o<<"("<< p.getX() << ";" << p.getY() << ")";
         return o;
     }
 };
+
+
+template <typename T>
+void Point2D<T>::translate(T dx,T dy) {
+    this -> x += dx;
+    this -> y += dy;
+}
 
 #endif

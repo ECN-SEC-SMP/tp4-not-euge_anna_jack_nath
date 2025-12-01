@@ -3,7 +3,9 @@
 
 #include <iostream>
 
-class ZN
+#include "Parcelle"
+
+class ZN : public Parcelle
 {
 private :
 

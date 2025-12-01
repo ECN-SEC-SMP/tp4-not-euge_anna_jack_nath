@@ -78,7 +78,7 @@ classDiagram
         + ~Parcelle()
         + getNumero() int
         + getProprietaire() string
-        + getSurfarce() float
+        + getSurface() float
         + getForme() Polygone~int,float~
         + getType() string
         + setNumero(int numero) void
@@ -100,20 +100,19 @@ classDiagram
         - surfaceConstructible float
         + surfaceConstructible() = 0*
         + getSurfaceConstructible() float
-        + setSurfaceConstructible(float surfaceCons) float
+        + setSurfaceConstructible(float surfaceCons) void
         + construire(Polygone~int~ poly) boolean
     }
     class ZN {
-        - typeCulture: string
         + ZN()
-        + ZN(string typeCulture)
         +~ZN()
-        + setTypeCulture(string typeCulture) void
-        + getTypeCulture() string
     }
     class ZA {
-        + ZA()
+        - typeCulture: string
+        + ZA(string typeCulture)
         + ~ZA()
+        + setTypeCulture(string typeCulture) void
+        + getTypeCulture() string
     }
     class ZU {
         - surfaceConstruite: float

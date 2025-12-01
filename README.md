@@ -22,5 +22,5 @@ cmake --build build/
 
 Run
 ```bash
-./build/CPP_TP3_JAK_ANNA
+./build/CPP_TP4
 ```

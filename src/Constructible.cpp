@@ -1,8 +1,18 @@
 #include "Constructible.hpp"
 
 
-Constructible::Constructible()
+
+Constructible::surfaceConstructible()
 {
+    this->surfaceConstructible = 0;
 }
 
-Constructible::~Constructible() { }
+float getSurfaceConstructible() 
+{
+    return setSurfaceConstructible;
+}
+
+void setSurfaceConstructible(float surfaceCons)
+{
+    this->surfaceConstructible = surfaceCons;
+}

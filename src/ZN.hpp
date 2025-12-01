@@ -2,8 +2,7 @@
 #define _ZN_HPP
 
 #include <iostream>
-
-#include "Parcelle"
+// #include "Parcelle"
 
 class ZN : public Parcelle
 {
@@ -15,6 +14,8 @@ public:
 
     // Destructeur
     ~ZN() {};
+
+    getTypeCulture();
 
     // Affichage
     friend std::ostream &operator<<(std::ostream &s, const ZN &type)

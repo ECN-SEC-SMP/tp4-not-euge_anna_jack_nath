@@ -19,9 +19,8 @@ public:
         : sommets(listeSommets) {}
     
     // Constructeurs copie
-    Polygone(const Polygone<T>& poly) {
-        poly = poly.sommets;
-    }
+    Polygone(const Polygone<T>& poly)
+        : sommets(poly.sommets) {}
 
     // Getters
     std::vector<Point2D<T>> getSommets(void) const {
@@ -43,7 +42,16 @@ public:
 
     // Surchage operator
     friend std::ostream& operator<< (std::ostream &o, Polygone<T>const& poly) {
-        o << "Polynome[" << poly.getSommets() << "]" ;
+        o<<"[";
+        
+        const auto& sommet=poly.getSommets();
+        for(int i=0; i<sommet.size(); ++i){
+            o<<sommet[i];
+            if(i<sommet.size() -1){
+                o<<",";
+            }
+        }
+        o<<"]";
         return o;
     }
 };

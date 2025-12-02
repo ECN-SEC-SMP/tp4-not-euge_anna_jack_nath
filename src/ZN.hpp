@@ -9,13 +9,25 @@ class ZN : public Parcelle
 private :
 
 public:
-    // Constructeur
+    /**
+     * @brief Construct a new ZN object
+     * 
+     */
     ZN(int num, std::string prop /*,Polygone<int,float> *forme*/);
 
-    // Destructeur
+    /**
+     * @brief Destroy the ZN object
+     * 
+     */
     ~ZN() {};
 
-    // Affichage
+    /**
+     * @brief Print the type of the object
+     * 
+     * @param s 
+     * @param type 
+     * @return ZN
+     */
     friend std::ostream &operator<<(std::ostream &s, const ZN &type)
     {
         s << "(" << "Type " << type.Parcelle::type << ")";

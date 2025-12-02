@@ -1,23 +1,58 @@
 #ifndef _ZA_HPP
 #define _ZA_HPP
 
-#include "Parcelle.hpp"
+#include "Constructible.hpp"
 #include <string>
+#include <iostream>
 
-class ZA : public Parcelle
+/**
+ * @brief Classe Zonne Agricole qui hérite de Constructible
+ * 
+ */
+class ZA : public Constructible
 {
 private :
     std::string typeCulture;
 
 public:
-    // Constructeur
+    /**
+     * @brief Construct a new ZA object
+     * 
+     */
     ZA(int num, std::string prop, std::string culture /*,Polygone<int,float> *forme*/);
 
-    // Destructeur
+    /**
+     * @brief Get the type of the culture growing on the parcel
+     * 
+     * @return std::string 
+     */
+    std::string getTypeCulture() const;
+
+    /**
+     * @brief Set the type of the culture growing on the parcel
+     * 
+     * @param culture 
+     */
+    void setTypeCulture(std::string culture);
+
+    /**
+     * @brief Destroy the ZA object
+     * 
+     */
     ~ZA() {};
 
-    std::string getTypeCulture() const;
-    void setTypeCulture(std::string culture);
+      /**
+     * @brief Print the type of the object
+     * 
+     * @param s 
+     * @param type 
+     * @return ZA
+     */
+    friend std::ostream &operator<<(std::ostream &s, const ZA &type)
+    {
+        s << "(" << "Type " << type.Constructible::type << ")";
+        return s;
+    }
 
 };
 

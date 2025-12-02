@@ -1,7 +1,7 @@
 #include "ZA.hpp"
 
 
-ZA :: ZA(int num, std::string prop, std::string culture /*,Polygone<int,float> *forme*/) : Parcelle(num, prop /*,Polygone<int,float> *forme*/)
+ZA :: ZA(int num, std::string prop, std::string culture /*,Polygone<int,float> *forme*/) : Constructible(num, prop /*,forme*/)
 {
     this->type = "ZA";
     this->typeCulture = culture;

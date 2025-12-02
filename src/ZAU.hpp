@@ -2,7 +2,6 @@
 #define _ZAU_HPP
 
 #include "Parcelle.hpp"
-#include <string>
 
 class ZAU : public Parcelle
 {

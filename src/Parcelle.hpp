@@ -7,7 +7,7 @@
 
 class Parcelle
 {
-private:
+protected:
     /**
      * @brief Type de la parcelle
      *

@@ -2,7 +2,7 @@
 #define _ZN_HPP
 
 #include <iostream>
-// #include "Parcelle"
+#include "Parcelle.hpp"
 
 class ZN : public Parcelle
 {
@@ -10,17 +10,15 @@ private :
 
 public:
     // Constructeur
-    ZN();
+    ZN(int num, std::string prop /*,Polygone<int,float> *forme*/);
 
     // Destructeur
     ~ZN() {};
 
-    getTypeCulture();
-
     // Affichage
     friend std::ostream &operator<<(std::ostream &s, const ZN &type)
     {
-        s << "(" << "Type " << ZN.type << ")";
+        s << "(" << "Type " << type.Parcelle::type << ")";
         return s;
     }
 };

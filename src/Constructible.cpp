@@ -2,17 +2,16 @@
 
 
 
-Constructible::surfaceConstructible()
+float Constructible :: getsurfaceConstructible()
 {
-    this->surfaceConstructible = 0;
+    return this->surfaceCons;
 }
 
-float getSurfaceConstructible() 
+
+void Constructible :: setSurfaceConstructible( float surfaceCons )
 {
-    return setSurfaceConstructible;
+    this->surfaceCons = surfaceCons;
 }
 
-void setSurfaceConstructible(float surfaceCons)
-{
-    this->surfaceConstructible = surfaceCons;
-}
+
+// bool Constructible :: construire() // Polygone necessaire

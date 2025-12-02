@@ -9,7 +9,7 @@ file(MAKE_DIRECTORY output) # Create directory for outputs
 # ========== Sources ==========
 
 set(sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Fichier.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/_.cpp
 )
 
@@ -30,11 +30,11 @@ add_compile_definitions(PROJECT_PATH="${CMAKE_CURRENT_SOURCE_DIR}") # Use for co
 
 # ========== Default Executable ==========
 
-add_executable(CPP_TP4 ${sources})
+add_executable(CPP_TP4 ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp ${sources})
 
 # ========== Test Executable ==========
 
 # Specific include for tests
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/test)
 
-add_executable(CPP_TP4_Test ${testSources})
+add_executable(CPP_TP4_Test ${sources} ${testSources})

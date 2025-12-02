@@ -9,9 +9,13 @@
  */
 #include <iostream>
 
+#include "Fichier.hpp"
+
 void FichierTest(void) {
 
     std::cout << "FichierTest() n'est pas encore implemente" << std::endl;
+
+    Fichier fich = Fichier("Path IN", "Path OUT");
 
     return;
 }

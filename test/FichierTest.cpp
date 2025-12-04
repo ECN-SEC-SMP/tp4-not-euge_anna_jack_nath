@@ -101,6 +101,18 @@ void FichierTest(void) {
         }
         std::cout << "===\n";
     }
+
+    std::cout << "===== Ecriture\n";
+
+    fich.write("FichierTests_results.txt", "Parcelle n 43\n");
+    fich.write("FichierTests_results.txt", "\tType : ZU\n");
+    fich.write("FichierTests_results.txt", "\tPolygone : [0;30] [60;100] [0;100]\n");
+    fich.write("FichierTests_results.txt", "\tPropriétaire : bdaerz\n");
+    fich.write("FichierTests_results.txt", "\tSurface : 2100.0\n");
+    fich.write("FichierTests_results.txt", "\t% constructible : 55%\n");
+    fich.write("FichierTests_results.txt", "\tsurface construite : 479.12198\n");
+    fich.write("FichierTests_results.txt", "\tsurface à construire restante : 675.87805\n");
+
     
     return;
 }

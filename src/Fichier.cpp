@@ -43,6 +43,16 @@ std::vector<std::string> Fichier::open(std::string file) {
     return out;
 }
 
-void write(std::string file, std::string data) {
+void Fichier::write(std::string file, std::string data) {
 
+    std::ofstream fich(this->outputDir + file, std::ios::app);
+
+    if (!fich.is_open())
+        throw std::invalid_argument(std::string(PROJECT_PATH) + "/" + this->inputDir + file + " does not exist");
+    else
+    {
+        fich << data;
+    }
+
+    return;
 }

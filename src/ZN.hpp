@@ -4,28 +4,31 @@
 #include <iostream>
 #include "Parcelle.hpp"
 
-class ZN : public Parcelle
+template <typename T>
+class ZN : public Parcelle<T>
 {
-private :
-
+private:
 public:
     /**
      * @brief Construct a new ZN object
-     * 
+     *
      */
-    ZN(int num, std::string prop /*,Polygone<int,float> *forme*/);
+    ZN(int num, std::string prop, Polygone<T> *forme) : Parcelle<T>(num, prop, forme)
+    {
+        this->type = "ZN";
+    }
 
     /**
      * @brief Destroy the ZN object
-     * 
+     *
      */
-    ~ZN() {};
+    ~ZN() {}
 
     /**
      * @brief Print the type of the object
-     * 
-     * @param s 
-     * @param type 
+     *
+     * @param s
+     * @param type
      * @return ZN
      */
     friend std::ostream &operator<<(std::ostream &s, const ZN &type)

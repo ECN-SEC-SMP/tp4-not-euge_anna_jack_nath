@@ -4,7 +4,11 @@
 #include <string>
 #include <exception>
 #include <stdexcept>
+#include <iostream>
 
+#include "Polygone.hpp"
+
+template <typename T>
 class Parcelle
 {
 protected:
@@ -36,7 +40,7 @@ protected:
      * @brief Forme de la parcelle
      *
      */
-    // Polygone<int>* forme;
+    Polygone<T> *forme;
 
     /**
      * @brief Pourcentage de surface constructible
@@ -53,41 +57,82 @@ public:
      * @param forme Forme de la parcelle
      *
      */
-    Parcelle(int num, std::string prop /*,Polygone<int,float> *forme*/);
+    Parcelle(int num, std::string prop, Polygone<T> *forme)
+    {
+        if (num < 0)
+        {
+            throw std::invalid_argument("Num doit être supérieur ou égale à 0");
+        }
+        if (prop.size() == 0)
+        {
+            throw std::invalid_argument("Prop ne peut pas être vide");
+        }
+
+        if (forme == nullptr)
+        {
+            throw std::invalid_argument("Forme ne peut pas être un pointeur null");
+        }
+
+        this->forme = forme;
+        this->numero = num;
+        this->proprietaire = prop;
+        this->pConstructible = 0;
+        this->surface = 0; // On va récupérer la taille de forme
+        this->type = "";   // Pour l'instant rien ?
+    }
 
     /**
      * @brief Construct a new Parcelle object
      *
      * @param parc La parcelle à recopier
      */
-    Parcelle(const Parcelle &parc);
+    Parcelle(const Parcelle &parc)
+    {
+        this->numero = parc.getNumero();
+        this->type = parc.getType();
+        this->forme = parc.getForme() : this->pConstructible = parc.getPConstructible();
+        this->proprietaire = parc.getProprietaire();
+        this->surface = parc.getSurface();
+    }
 
     /**
      * @brief Destroy the Parcelle object
      *
      */
-    ~Parcelle(void);
+    ~Parcelle(void)
+    {
+        this->forme = nullptr;
+    }
 
     /**
      * @brief Get the Numero object
      *
      * @return int
      */
-    int getNumero(void) const;
+    int getNumero(void) const
+    {
+        return this->numero;
+    }
 
     /**
      * @brief Get the Proprietaire object
      *
      * @return std::string
      */
-    std::string getProprietaire(void) const;
+    std::string getProprietaire(void) const
+    {
+        return this->proprietaire;
+    }
 
     /**
      * @brief Get the Surface object
      *
      * @return float
      */
-    float getSurface(void) const;
+    float getSurface(void) const
+    {
+        return this->surface;
+    }
 
     /**
      * @brief Récupère la forme de la parcelle
@@ -95,55 +140,104 @@ public:
      * @return La forme de la parcelle
      *
      */
-    // Polygone<int,float> getForme(void) const;
+    Polygone<T> *getForme(void) const
+    {
+        return this->forme;
+    }
 
     /**
      * @brief Get the Type object
      *
      * @return std::string
      */
-    std::string getType(void) const;
+    std::string getType(void) const
+    {
+        return this->type;
+    }
 
     /**
      * @brief Récupère le pourcentage constructible
-     * 
-     * @return int 
+     *
+     * @return int
      */
-    int getPConstructible(void) const;
+    int getPConstructible(void) const
+    {
+        return this->pConstructible;
+    }
 
     /**
      * @brief Set the Numero object
      *
      * @param numero Le numéro de la parcelle
      */
-    void setNumero(int numero);
+    void setNumero(int numero)
+    {
+        if (numero < 0)
+        {
+            throw std::invalid_argument("Numero doit être supérieur ou égale à 0");
+        }
+        this->numero = numero;
+    }
 
     /**
      * @brief Set the Proprietaire object
      *
      * @param proprio Le nom du propriétaire
      */
-    void setProprietaire(std::string proprio);
+    void setProprietaire(std::string proprio)
+    {
+        if (prop.size() == 0)
+        {
+            throw std::invalid_argument("Le propriétaire ne peut pas être vide");
+        }
+        this->proprietaire = prop;
+    }
 
     /**
      * @brief Set pConstructible object
-     * 
+     *
      * @param pCons La valeur du pourcentage
      */
-    void setPConstructible(int pCons);
+    void setPConstructible(int pCons)
+    {
+        if (pConstructible > 100)
+        {
+            throw std::invalid_argument("Le pourcentage constructible ne peut pas excéder 100");
+        }
+        if (pConstructible < 0)
+        {
+            throw std::invalid_argument("Le pourcentage constructible ne peut pas être inférieur à 0");
+        }
+        this->pConstructible = pConstructible;
+    }
 
     /**
      * @brief Set the Surface object
-     * 
+     *
      * @param surface La surface de la parcelle
      */
-    void setSurface(float surface);
+    void setSurface(float surface)
+    {
+        if (surface < 0)
+        {
+            throw std::invalid_argument("La surface ne peut pas être inférieur à 0");
+        }
+        this->surface = surface;
+    }
 
     /**
      * @brief Défini la forme de la parcelle
      *
+     * @param forme La nouvelle forme
      */
-    // void setForme(Polygone<int,float> forme);
+    void setForme(Polygone<T> *forme)
+    {
+        if (forme == nullptr)
+        {
+            throw std::invalid_argument("On ne peut pas avoir une forme de parcelle null");
+        }
+        this->forme = forme
+    }
 
     /**
      * @brief Set the Type object
@@ -151,6 +245,21 @@ public:
      * @param type Type de parcelle
      */
     virtual void setType(std::string type) = 0;
+
+    virtual operator std::string() const
+    {
+        std::string stringify = "Parcelle n° " + std::to_string(this->numero) + "\n";
+        stringify += "\tType : " + this->type + "\n";
+        stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
+        stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
+        stringify += "\tSurface : " + this->surface + "\n";
+    }
+
+    friend std::ostream &operator<<(std::ostream &s, const Parcelle &parcelle)
+    {
+        s << "(" << point.abscisse << ", " << point.ordonnee << ")";
+        return s;
+    }
 };
 
 #endif

@@ -7,43 +7,44 @@
  * @brief Classe Constructible qui hérite de Parcelle
  *
  */
-class Constructible : public Parcelle
+template <typename T>
+class Constructible : public Parcelle<T>
 {
 private:
     float surfaceCons;
 
 public:
-    Constructible(int num, std::string prop /*,Polygone<int,float> *forme*/);
+    Constructible(int num, std::string prop, Polygone<T> *forme) : Parcelle<T>(num, prop, forme)
+    {
+        this->surfaceCons = 0.0;
+    }
 
     /**
-     * @brief Construct a new Constructible area object 
-     * 
-     * @return float 
+     * @brief Construct a new Constructible area object
+     *
+     * @return float
      */
     virtual float surfaceConstructible();
 
     /**
      * @brief Get the constructible surface of the object
-     * 
-     * @return float 
+     *
+     * @return float
      */
-    float getSurfaceConstructible() const;
+    float getSurfaceConstructible() const
+    {
+        return this->surfaceCons;
+    }
 
     /**
      * @brief Set the constructible surface of the object
-     * 
-     * @param surfaceCons 
+     *
+     * @param surfaceCons
      */
-    void setSurfaceConstructible( float surfaceCons );
-
-
-    /**
-     * @brief Construct on the area of the object
-     * 
-     * @return true 
-     * @return false 
-     */
-    bool construire(); // Polygone necessaire  
+    void setSurfaceConstructible(float surfaceCons)
+    {
+        this->surfaceCons = surfaceCons;
+    }
 };
 
 #endif

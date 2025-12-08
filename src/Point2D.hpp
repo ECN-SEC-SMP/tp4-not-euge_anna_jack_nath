@@ -3,6 +3,21 @@
 
 #include <iostream>
 
+/**
+ * @class Point2D
+ * @brief Représente un point dans un plan cartésien à deux dimensions.
+ *
+ * La figure décrit les éléments attendus dans cette classe. Vous surchargerez l’opérateur << 
+ * pour permettre l’affichage d’un Point2D à l’écran.
+ *
+ * @tparam T Type numérique utilisé pour les coordonnées des points.
+ * @brief Elle permet de manipuler des points génériques avec différents types 
+ * numériques : int, float, double, etc.
+ * 
+ * @tparam Coordonnée en axe X.
+ * @tparam Coordonnée en axe Y.
+ */
+
 template <typename T>
 class Point2D {
 private:

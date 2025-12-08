@@ -5,6 +5,16 @@
 #include "Point2D.hpp"
 #include <vector>
 
+/**
+ * @class Polygone
+ * @brief Représente un polygone générique composé d'une liste de sommets en 2D.
+ *
+ * Cette classe template permet de manipuler des polygones dont les coordonnées
+ * des sommets sont de type T (int, float, double…).
+ *
+ * @tparam T Type numérique utilisé pour les coordonnées des points.
+ */
+
 template <typename T>
 class Polygone
 {

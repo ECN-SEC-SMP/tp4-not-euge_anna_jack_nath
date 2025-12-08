@@ -10,6 +10,14 @@ file(MAKE_DIRECTORY output) # Create directory for outputs
 
 set(sources
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Fichier.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Point2D.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Polygone.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Parcelle.hpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Carte.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ZA.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ZAU.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ZN.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ZU.hpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/_.cpp
 )
 
@@ -19,6 +27,7 @@ set(testSources
     ${CMAKE_CURRENT_SOURCE_DIR}/test/Point2DTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/PolygoneTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/ParcelleTest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/ZnTest.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/test/_Test.cpp
 )
 

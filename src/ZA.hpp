@@ -61,7 +61,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZA &type)
     {
-        s << "(" << "Type " << type.type << ")";
+        s << type.type;
         return s;
     }
 };

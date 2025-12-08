@@ -32,7 +32,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZAU &type)
     {
-        s << "(" << "Type " << type.Constructible::type << ")";
+        s << type.Constructible::type;
         return s;
     }
 };

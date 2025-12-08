@@ -33,7 +33,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZN &zone)
     {
-        s << "(" << "Type " << zone.getType() << ")";
+        s << zone.getType();
         return s;
     }
 };

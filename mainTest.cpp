@@ -17,13 +17,15 @@
 #include "FichierTest.hpp"
 #include "Point2DTest.hpp"
 #include "PolygoneTest.hpp"
+#include "ZUTests.hpp"
 
 typedef void (*testFunc_t)(void);
 
 std::map<std::string, testFunc_t> testMap = {
     {"Fichier", FichierTest},
     {"Point2D", Point2DTest},
-    {"Polygone", PolygoneTest}
+    {"Polygone", PolygoneTest},
+    {"ZU", ZUTests}
 };
 
  int main(int argc, char const *argv[])

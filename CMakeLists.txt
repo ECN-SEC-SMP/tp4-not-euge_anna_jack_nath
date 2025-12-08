@@ -26,7 +26,9 @@ set(testSources
     ${CMAKE_CURRENT_SOURCE_DIR}/test/FichierTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/Point2DTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/PolygoneTest.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/test/ZnTest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/ZUTests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/ZATests.cpp
+
     # ${CMAKE_CURRENT_SOURCE_DIR}/test/_Test.cpp
 )
 

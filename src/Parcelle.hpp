@@ -244,7 +244,7 @@ public:
     {
         std::string stringify = "Parcelle n° " + std::to_string(this->numero) + "\n";
         stringify += "\tType : " + this->type + "\n";
-        stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
+        // stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
         stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
         stringify += "\tSurface : " + std::to_string(this->surface) + "\n";
 

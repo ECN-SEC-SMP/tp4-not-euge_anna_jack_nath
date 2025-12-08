@@ -10,7 +10,7 @@
  *
  */
 template <typename T>
-class ZA : public Constructible
+class ZA : public Constructible<T>
 {
 private:
     std::string typeCulture;
@@ -61,7 +61,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZA &type)
     {
-        s << "(" << "Type " << type.Constructible::type << ")";
+        s << "(" << "Type " << type.type << ")";
         return s;
     }
 };

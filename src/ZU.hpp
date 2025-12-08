@@ -18,7 +18,7 @@ public:
     ZU(int num, std::string prop, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
     {
         this->type = "ZU";
-        this->surfaceCons = 0;
+        this->surfaceConstruite = 0;
     }
 
     /**
@@ -27,7 +27,7 @@ public:
      */
     ZU(int num, std::string prop, float surfaceC, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
     {
-        this->surfaceCons = surfaceC;
+        this->surfaceConstruite = surfaceC;
         this->type = "ZU";
     }
 
@@ -66,7 +66,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZU &type)
     {
-        s << "(" << "Type " << type.Constructible::type << ")";
+        s << "(" << "Type " << type.type << ")";
         return s;
     }
 };

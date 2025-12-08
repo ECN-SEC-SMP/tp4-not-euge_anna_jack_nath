@@ -16,6 +16,7 @@ void ZUTests() {
     parcelle2.setSurfaceConstruite(200.0);
     std::cout << "Après modification, surface construite : " << parcelle2.getSurfaceConstruite() << std::endl;
 
+    //Besoin de nettoyer ?
 
     return;
 }

@@ -24,7 +24,7 @@ public:
      *
      * @return float
      */
-    virtual float surfaceConstructible();
+    virtual float surfaceConstructible() {}
 
     /**
      * @brief Get the constructible surface of the object

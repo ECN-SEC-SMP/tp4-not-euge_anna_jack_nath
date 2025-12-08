@@ -240,13 +240,6 @@ public:
         this->forme = forme;
     }
 
-    /**
-     * @brief Set the Type object
-     *
-     * @param type Type de parcelle
-     */
-    virtual void setType(std::string type) = 0;
-
     virtual operator std::string() const
     {
         std::string stringify = "Parcelle n° " + std::to_string(this->numero) + "\n";

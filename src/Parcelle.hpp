@@ -90,7 +90,8 @@ public:
     {
         this->numero = parc.getNumero();
         this->type = parc.getType();
-        this->forme = parc.getForme() : this->pConstructible = parc.getPConstructible();
+        this->forme = parc.getForme();
+        this->pConstructible = parc.getPConstructible();
         this->proprietaire = parc.getProprietaire();
         this->surface = parc.getSurface();
     }
@@ -186,11 +187,11 @@ public:
      */
     void setProprietaire(std::string proprio)
     {
-        if (prop.size() == 0)
+        if (proprio.size() == 0)
         {
             throw std::invalid_argument("Le propriétaire ne peut pas être vide");
         }
-        this->proprietaire = prop;
+        this->proprietaire = proprio;
     }
 
     /**
@@ -236,7 +237,7 @@ public:
         {
             throw std::invalid_argument("On ne peut pas avoir une forme de parcelle null");
         }
-        this->forme = forme
+        this->forme = forme;
     }
 
     /**
@@ -252,12 +253,14 @@ public:
         stringify += "\tType : " + this->type + "\n";
         stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
         stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
-        stringify += "\tSurface : " + this->surface + "\n";
+        stringify += "\tSurface : " + std::to_string(this->surface) + "\n";
+
+        return stringify;
     }
 
     friend std::ostream &operator<<(std::ostream &s, const Parcelle &parcelle)
     {
-        s << "(" << point.abscisse << ", " << point.ordonnee << ")";
+        s << "(" << parcelle.abscisse << ", " << parcelle.ordonnee << ")";
         return s;
     }
 };

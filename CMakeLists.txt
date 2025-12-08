@@ -18,6 +18,7 @@ set(testSources
     ${CMAKE_CURRENT_SOURCE_DIR}/test/FichierTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/Point2DTest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/PolygoneTest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/ParcelleTest.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/test/_Test.cpp
 )
 

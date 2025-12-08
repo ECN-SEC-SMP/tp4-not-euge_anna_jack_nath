@@ -44,6 +44,10 @@ public:
     {
         this->listeParcelle = lParcelles;
         this->surface = 0; // Faut sommer la taille des parcelles
+        for (auto p : listeParcelle)
+        {
+            surface += p-> getSurface();
+        }
     }
 
     /**
@@ -73,6 +77,28 @@ public:
     {
         throw std::runtime_error("N'est pas implémenté");
     }
+
+    /**
+     * @brief Ajoute une parcelle à la carte.
+     *
+     * @param p Pointeur vers une parcelle.
+     */
+    void addParcelle(Parcelle<T>* p)
+    {
+        listeParcelle.push_back(p);
+        surface += p->getSurface();
+    }
+
+    /**
+     * @brief Retourne la surface totale de la carte.
+     */
+    float getSurface() const { return surface; }
+
+    /**
+     * @brief Retourne la liste des parcelles.
+     */
+    std::vector<Parcelle<T>*> getParcelles() const { return listeParcelle; }
+
 };
 
 #endif

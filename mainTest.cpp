@@ -17,9 +17,9 @@
 #include "FichierTest.hpp"
 #include "Point2DTest.hpp"
 #include "PolygoneTest.hpp"
-#include "ZnTest.hpp"
-#include "ZUTests.hpp"
-#include "ZATests.hpp"
+#include "ZNTest.hpp"
+#include "ZUTest.hpp"
+#include "ZATest.hpp"
 
 typedef void (*testFunc_t)(void);
 
@@ -27,9 +27,9 @@ std::map<std::string, testFunc_t> testMap = {
     {"Fichier", FichierTest},
     {"Point2D", Point2DTest},
     {"Polygone", PolygoneTest},
-    {"ZnTest", ZnTest},
-    {"ZU", ZUTests},
-    {"ZA", ZATests}
+    {"ZNTest", ZNTest},
+    {"ZUTest", ZUTests},
+    {"ZATest", ZATest}
 };
 
  int main(int argc, char const *argv[])

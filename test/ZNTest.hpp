@@ -4,10 +4,10 @@
 #include "ZN.hpp"
 #include <assert.h>
 
-void ZnTest(void);
+void ZNTest(void);
 
-void test_constructeur(void);
-void test_affichage(void);
+void ZNtest_constructeur(void);
+void ZNtest_affichage(void);
 
 
 #endif

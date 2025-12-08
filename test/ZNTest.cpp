@@ -1,16 +1,16 @@
-#include "ZnTest.hpp"
+#include "ZNTest.hpp"
 
-void ZnTest(void)
+void ZNTest(void)
 {
     std::cout << "Debut test ZN:" << std::endl;
 
-    test_constructeur();
-    test_affichage();
+    ZNtest_constructeur();
+    ZNtest_affichage();
 
     std::cout << "ZN : OK" << std::endl;
 }
 
-void test_constructeur(void)
+void ZNtest_constructeur(void)
 {
     std::vector<Point2D<int>> points;
 
@@ -28,7 +28,7 @@ void test_constructeur(void)
     assert(zoneNaturel.getForme() == poly);
 }
 
-void test_affichage(void)
+void ZNtest_affichage(void)
 {
     std::vector<Point2D<int>> points;
 

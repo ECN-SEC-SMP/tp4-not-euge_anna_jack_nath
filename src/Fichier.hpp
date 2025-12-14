@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+#include <Parcelle.hpp>
+
 // ==================================================
 // Defines
 // ==================================================
@@ -42,9 +44,9 @@ private:
     std::string inputDir;
     std::string outputDir;
 public:
+
     Fichier(std::string inputDir, std::string outputDir);
     ~Fichier();
-
 
     /**
      * @brief Read a file if it exist.
@@ -64,7 +66,104 @@ public:
      * @param data 
      */
     void write(std::string file, std::string data);
+
+    /**
+     * @brief Get the Polygone object
+     * 
+     * @tparam T typename for Polygone
+     * @param pointList Must be a string in the format "[x1,y1] [x2,y2] ... [xn,yn]"
+     * @return Polygone<T> 
+     */
+    template<typename T>
+    Polygone<T> getPolygone(std::string pointList);
+
+    /**
+     * @brief Get the Parcelle object
+     * 
+     * @tparam T typename for Parcelle
+     * @param format Must be a Format defined in Fichier.hpp
+     * @return Parcelle<T> 
+     */
+    template<typename T>
+    Parcelle<T> getParcelle(std::string format);
 };
+
+template<typename T>
+Polygone<T>* getPolygone(std::string pointList) {
+    std::vector<Point2D<T>> points;
+    std::stringstream ss(pointList);
+    std::string tok;
+
+    int xn;
+    int yn;
+
+    while (getline(ss, tok, ' ')) {
+        sscanf(tok, POINT_FORMAT, xn, yn);
+        points.push_back(Point2D<T>(static_cast<T>(xn), static_cast<T>(yn)))
+    }
+    
+    return Polygone<T>(points);
+}
+
+template<typename T>
+Parcelle<T> getParcelle(std::string format) {
+
+    std::string token;
+    std::stringstream sformat(format);
+
+    std::string type;
+    std::string owner;
+    int num;
+
+    getline(sformat, token, ' ');
+
+    if (token == "ZAU") {
+        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZAU, 
+            pc_type, &number, pc_name, &percentConstructible, &charRed);
+
+
+
+        std::cout << "\tType : " << std::string(pc_type) << "\n";
+        std::cout << "\tNumber : " << number << "\n";
+        std::cout << "\tName : " << std::string(pc_name) << "\n";
+        std::cout << "\t%Construct : " << percentConstructible << "\n";
+        std::cout << "\tPoints : " << texte.at(i).substr(charRed)  << "\n";
+    }
+    else if (token = "ZA") {
+        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZA, 
+            pc_type, &number, pc_name, pc_culture, &charRed);
+
+        std::cout << "\tType : " << std::string(pc_type) << "\n";
+        std::cout << "\tNumber : " << number << "\n";
+        std::cout << "\tName : " << std::string(pc_name) << "\n";
+        std::cout << "\tCulture : " << std::string(pc_culture) << "\n";
+        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+    }
+    else if (token = "ZU") {
+        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZU, 
+            pc_type, &number, pc_name, &percentConstructible, &surfaceConstruite, &charRed);
+
+        std::cout << "\tType : " << std::string(pc_type) << "\n";
+        std::cout << "\tNumber : " << number << "\n";
+        std::cout << "\tName : " << std::string(pc_name) << "\n";
+        std::cout << "\t%Construct : " << percentConstructible << "\n";
+        std::cout << "\tsurfConstr : " << surfaceConstruite << "\n";
+        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+    }
+    else if (token = "ZN") {
+        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZN, 
+            pc_type, &number, pc_name, &charRed);
+
+        std::cout << "\tType : " << std::string(pc_type) << "\n";
+        std::cout << "\tNumber : " << number << "\n";
+        std::cout << "\tName : " << std::string(pc_name) << "\n";
+        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+    }
+    else {
+        std::cerr << "Unknow type : " << texte.at(i) << "\n";
+    }
+
+}
 
 
 #endif  /* FICHIER_HPP_ */

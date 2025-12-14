@@ -13,7 +13,7 @@
  *
  */
 template <typename T>
-class ZA : public Constructible
+class ZA : public Constructible<T>
 {
 private:
     std::string typeCulture;

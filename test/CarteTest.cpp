@@ -6,7 +6,7 @@
 #include "CarteTest.hpp"
 #include "Carte.hpp"
 #include "Parcelle.hpp"
-
+#include "ZN.hpp"
 
 // Test 1 - carte vide
 
@@ -33,4 +33,13 @@ void testAjoutSimple() {
     std::cout << "Nb parcelles = " << c.getParcelles().size() << std::endl;
 
     delete p; // la carte ne delete pas la parcelle
+}
+
+
+void CarteTest(void) {
+
+    testCarteVide();
+
+    testAjoutSimple();
+
 }

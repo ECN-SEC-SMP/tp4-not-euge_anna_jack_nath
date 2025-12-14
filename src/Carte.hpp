@@ -29,7 +29,7 @@ public:
      * @brief Construct a new Carte object
      *
      */
-    Carte::Carte(void)
+    Carte(void)
     {
         this->listeParcelle = {};
         this->surface = 0;
@@ -40,7 +40,7 @@ public:
      *
      * @param lParcelle Liste de parcelles
      */
-    Carte::Carte(std::vector<Parcelle<T> *> lParcelles)
+    Carte(std::vector<Parcelle<T> *> lParcelles)
     {
         this->listeParcelle = lParcelles;
         this->surface = 0; // Faut sommer la taille des parcelles
@@ -55,7 +55,7 @@ public:
      *
      * @param file Nom du fichier
      */
-    Carte::Carte(std::string file)
+    Carte(std::string file)
     {
         throw std::runtime_error("N'est pas implémenté");
     }
@@ -64,8 +64,14 @@ public:
      * @brief Destroy the Carte object
      *
      */
-    Carte::~Carte(void)
+    ~Carte(void)
     {
+        for (unsigned int i = 0; i < this->listeParcelle.size(); i++)
+        {
+            if (this->listeParcelle.at(0) != nullptr) {
+                delete this->listeParcelle.at(i);
+            }
+        }
     }
 
     /**
@@ -73,7 +79,7 @@ public:
      *
      * @param file Nom du fichier
      */
-    void Carte::save(std::string file)
+    void save(std::string file)
     {
         throw std::runtime_error("N'est pas implémenté");
     }

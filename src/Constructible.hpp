@@ -29,14 +29,15 @@ public:
      * @param pConstructible Pourcentage constructible de la parcelle, 0 < valeur < 1 
      * @param forme Forme de la parcelle
      */
-    Constructible(int num, std::string prop, float surfaceConstruite, float pConstructible, Polygone<T> *forme) : Parcelle<T>(num, prop, forme)
+    Constructible(int num, std::string prop, float pConstructible, float surfaceConstruite, Polygone<T> *forme) : Parcelle<T>(num, prop, pConstructible, forme)
     {
         this->surfaceConstruite = surfaceConstruite;
         
+        // TODO : Wait for getSurface correct implementation in Parcelle
         // Verify that surfaceConstruite is less or equal to buildable area
-        if (surfaceConstruite >= (this->getSurface() * this->pConstructible)) {
-            throw std::invalid_argument("surfaceConstruite ne peut pas etre superieur");
-        }
+        // if (surfaceConstruite >= (this->getSurface() * this->pConstructible)) {
+        //     throw std::invalid_argument("surfaceConstruite ne peut pas etre superieur");
+        // }
     }
 
     /**
@@ -47,6 +48,16 @@ public:
     float getSurfaceConstructible() const
     {
         return this->getSurface() * this->pConstructible;
+    }
+
+    /**
+     * @brief Get the Surface Construite of the object
+     *
+     * @return float
+     */
+    float getSurfaceConstruite() const
+    {
+        return this->surfaceConstruite;
     }
 
     /**

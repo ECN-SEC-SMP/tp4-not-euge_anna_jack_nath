@@ -12,7 +12,8 @@ public:
      * @brief Construct a new ZAU object
      *
      */
-    ZAU(int num, std::string prop, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
+    ZAU(int num, std::string prop, float pConstructible, Polygone<T> *forme) 
+        : Constructible<T>(num, prop, 0, pConstructible, forme)
     {
         this->type = "ZAU";
     }
@@ -32,7 +33,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZAU &type)
     {
-        s << "(" << "Type " << type.Constructible::type << ")";
+        // s << "(" << "Type " << type.Constructible::type << ")";
         return s;
     }
 };

@@ -13,7 +13,7 @@ public:
      * @brief Construct a new ZN object
      *
      */
-    ZN(int num, std::string prop, Polygone<T> *forme) : Parcelle<T>(num, prop, forme)
+    ZN(int num, std::string prop, Polygone<T> *forme) : Parcelle<T>(num, prop, 0, forme)
     {
         this->type = "ZN";
     }
@@ -33,7 +33,7 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &s, const ZN &zone)
     {
-        s << "(" << "Type " << zone.getType() << ")";
+        //s << "(" << "Type " << this.getType() << ")";
         return s;
     }
 };

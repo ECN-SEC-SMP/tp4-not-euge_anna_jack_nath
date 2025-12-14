@@ -55,10 +55,11 @@ public:
      *
      * @param num Numéro de la parcelle
      * @param prop Nom du propriétaire
+     * @param pConstructible Pourcentage constructible de la surface
      * @param forme Forme de la parcelle
      *
      */
-    Parcelle(int num, std::string prop, Polygone<T> *forme, float pConstructible)
+    Parcelle(int num, std::string prop, float pConstructible, Polygone<T> *forme)
     {
         // Check that the number is a positive number
         if (num < 0)
@@ -79,15 +80,16 @@ public:
         }
 
         // Verify that pConstructible is a percentage
+        std::cout << __func__ << " " << pConstructible << "\n";  
         if ((pConstructible < 0) || (pConstructible > 1)) {
-            throw std::invalid_argument("pConstructible doit etre entre 0 et 1, pConstructible : %f", pConstructible);
+            throw std::invalid_argument("pConstructible doit etre entre 0 et 1");
         }
 
         this->forme = forme;
         this->numero = num;
         this->proprietaire = prop;
         this->pConstructible = pConstructible;
-        this->surface = this->forme.; // On va récupérer la taille de forme
+        this->surface = 0; // On va récupérer la taille de forme
         this->type = "";   // Pour l'instant rien ?
     }
 
@@ -112,6 +114,10 @@ public:
      */
     ~Parcelle(void)
     {
+        if (this->forme != nullptr) {
+            delete this->forme; // Free forme
+        }
+
         this->forme = nullptr;
     }
 
@@ -254,7 +260,7 @@ public:
     {
         std::string stringify = "Parcelle n° " + std::to_string(this->numero) + "\n";
         stringify += "\tType : " + this->type + "\n";
-        stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
+        // stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
         stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
         stringify += "\tSurface : " + std::to_string(this->surface) + "\n";
 

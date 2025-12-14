@@ -32,7 +32,6 @@ void testAjoutSimple() {
     std::cout << "Surface attendue = 10, surface obtenue = " << c.getSurface() << std::endl;
     std::cout << "Nb parcelles = " << c.getParcelles().size() << std::endl;
 
-    delete p; // la carte ne delete pas la parcelle
 }
 
 

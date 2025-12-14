@@ -11,9 +11,14 @@
 #define FICHIER_HPP_
 
 #include <string>
+#include <sstream>
 #include <vector>
 
 #include <Parcelle.hpp>
+#include <ZA.hpp>
+#include <ZAU.hpp>
+#include <ZN.hpp>
+#include <ZU.hpp>
 
 // ==================================================
 // Defines
@@ -75,7 +80,7 @@ public:
      * @return Polygone<T> 
      */
     template<typename T>
-    Polygone<T> getPolygone(std::string pointList);
+    Polygone<T>* getPolygone(std::string pointList);
 
     /**
      * @brief Get the Parcelle object
@@ -85,11 +90,11 @@ public:
      * @return Parcelle<T> 
      */
     template<typename T>
-    Parcelle<T> getParcelle(std::string format);
+    Parcelle<T>* getParcelle(std::string format);
 };
 
 template<typename T>
-Polygone<T>* getPolygone(std::string pointList) {
+Polygone<T>* Fichier::getPolygone(std::string pointList) {
     std::vector<Point2D<T>> points;
     std::stringstream ss(pointList);
     std::string tok;
@@ -97,72 +102,100 @@ Polygone<T>* getPolygone(std::string pointList) {
     int xn;
     int yn;
 
-    while (getline(ss, tok, ' ')) {
-        sscanf(tok, POINT_FORMAT, xn, yn);
-        points.push_back(Point2D<T>(static_cast<T>(xn), static_cast<T>(yn)))
+    // DEBUG
+    std::cout << __func__ << "\n" << "\t";
+    std::cout << pointList << "\n";
+
+    while (std::getline(ss, tok, ' ')) {
+        sscanf(tok.c_str(), POINT_FORMAT, &xn, &yn);
+        points.push_back(Point2D<T>(static_cast<T>(xn), static_cast<T>(yn)));
     }
     
-    return Polygone<T>(points);
+    return new Polygone<T>(points);
 }
 
 template<typename T>
-Parcelle<T> getParcelle(std::string format) {
+Parcelle<T>* Fichier::getParcelle(std::string format) {
+
+    // DEBUG
+    std::cout << __func__ << "\n" << "\t";
+    std::cout << format << "\n";
+
+    Parcelle<T>* retParcelle;
+    Polygone<T>* forme;
 
     std::string token;
     std::stringstream sformat(format);
 
     std::string type;
     std::string owner;
+    std::string culture;
     int num;
 
-    getline(sformat, token, ' ');
+    float pConstr;  // Buildable percentage
+    float surfConstr; // Built area
 
-    if (token == "ZAU") {
-        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZAU, 
-            pc_type, &number, pc_name, &percentConstructible, &charRed);
+    // Get type
+    std::getline(sformat, token, ' ');
+    type = token;
+    
+    // Get number
+    std::getline(sformat, token, ' ');
+    num = std::stoi(token);
+    
+    // Get owner
+    std::getline(sformat, token, ' ');
+    owner = token;
+    
+    if (type == "ZAU") {
+        std::getline(sformat, token, ' ');
+        pConstr = (std::stof(token) / 100);
 
+        // Get points list and parse it into a polygone
+        std::getline(sformat, token);
+        forme = getPolygone<T>(token);
 
-
-        std::cout << "\tType : " << std::string(pc_type) << "\n";
-        std::cout << "\tNumber : " << number << "\n";
-        std::cout << "\tName : " << std::string(pc_name) << "\n";
-        std::cout << "\t%Construct : " << percentConstructible << "\n";
-        std::cout << "\tPoints : " << texte.at(i).substr(charRed)  << "\n";
+        retParcelle = new ZAU(num, owner, pConstr, forme);
     }
-    else if (token = "ZA") {
-        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZA, 
-            pc_type, &number, pc_name, pc_culture, &charRed);
+    else if (type == "ZA") {
+        std::getline(sformat, token, ' ');
+        culture = token;
+        
+        // Get points list and parse it into a polygone
+        std::getline(sformat, token);
+        forme = getPolygone<T>(token);
 
-        std::cout << "\tType : " << std::string(pc_type) << "\n";
-        std::cout << "\tNumber : " << number << "\n";
-        std::cout << "\tName : " << std::string(pc_name) << "\n";
-        std::cout << "\tCulture : " << std::string(pc_culture) << "\n";
-        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+        retParcelle = new ZA(num, owner, culture, forme);
     }
-    else if (token = "ZU") {
-        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZU, 
-            pc_type, &number, pc_name, &percentConstructible, &surfaceConstruite, &charRed);
+    else if (type == "ZU") {
+        std::getline(sformat, token, ' ');
+        pConstr = (std::stof(token) / 100);
 
-        std::cout << "\tType : " << std::string(pc_type) << "\n";
-        std::cout << "\tNumber : " << number << "\n";
-        std::cout << "\tName : " << std::string(pc_name) << "\n";
-        std::cout << "\t%Construct : " << percentConstructible << "\n";
-        std::cout << "\tsurfConstr : " << surfaceConstruite << "\n";
-        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+        std::getline(sformat, token, ' ');
+        surfConstr = (std::stof(token) / 100);
+
+        std::cout << "pcontsdtdf " << pConstr << "\n";
+        std::cout << "surfConstr " << surfConstr << "\n";
+        
+        // Get points list and parse it into a polygone
+        std::getline(sformat, token);
+        forme = getPolygone<T>(token);
+
+        retParcelle = new ZU(num, owner, pConstr, surfConstr, forme);
     }
-    else if (token = "ZN") {
-        std::sscanf(texte.at(i).c_str(), PARCELLE_FORMAT_ZN, 
-            pc_type, &number, pc_name, &charRed);
+    else if (type == "ZN") {
+        
+        // Get points list and parse it into a polygone
+        std::getline(sformat, token);
+        forme = getPolygone<T>(token);
 
-        std::cout << "\tType : " << std::string(pc_type) << "\n";
-        std::cout << "\tNumber : " << number << "\n";
-        std::cout << "\tName : " << std::string(pc_name) << "\n";
-        std::cout << "\tPoints : " << texte.at(i).substr(charRed) << "\n";
+        retParcelle = new ZN(num, owner, forme);
     }
     else {
-        std::cerr << "Unknow type : " << texte.at(i) << "\n";
+        std::cerr << "Unknow type : " << type << "\n";
     }
 
+    return retParcelle;
 }
 
 

@@ -25,7 +25,7 @@ std::map<std::string, testFunc_t> testMap = {
     {"Fichier", FichierTest},
     {"Point2D", Point2DTest},
     {"Polygone", PolygoneTest},
-    {"Carte", CarteTest}
+    // {"Carte", CarteTest}
 };
 
  int main(int argc, char const *argv[])

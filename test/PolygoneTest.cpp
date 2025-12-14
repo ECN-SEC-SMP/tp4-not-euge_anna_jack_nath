@@ -19,7 +19,7 @@ void PolygoneTest() {
     // Création de points
     Point2D<int> p1(0, 0);
     Point2D<int> p2(1, 0);
-    Point2D<int> p3(0, 1);
+    Point2D<int> p3(1, 1);
 
     // Création d'un polygone avec une liste de points
     std::vector<Point2D<int>> liste = {p1, p2, p3};
@@ -32,7 +32,7 @@ void PolygoneTest() {
     std::cout << "Polygone copié : " << poly2 << std::endl;
 
     // Ajouter un point
-    Point2D<int> p4(1, 1);
+    Point2D<int> p4(0, 1);
     poly1.addPoint(p4);
     std::cout << "Polygone après ajout d'un point : " << poly1 << std::endl;
     std::cout << "Polygone copié (non modifié) : " << poly2 << std::endl;

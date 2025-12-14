@@ -31,9 +31,9 @@ public:
      * @param type
      * @return ZN
      */
-    friend std::ostream &operator<<(std::ostream &s, const ZN &type)
+    friend std::ostream &operator<<(std::ostream &s, const ZN &zone)
     {
-        s << "(" << "Type " << type.Parcelle::type << ")";
+        s << "(" << "Type " << zone.getType() << ")";
         return s;
     }
 };

@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Point2D.hpp"
 #include <vector>
+#include <math.h>
+#include <algorithm>
 
 /**
  * @class Polygone
@@ -42,13 +44,40 @@ public:
         sommets = listeSommets;
     }
 
-    // Méthode addPoint
-    void addPoint(Point2D<T>& p) {
-        sommets.push_back(p);
+    // Méthode addPoint 
+    void addPoint(Point2D<T>& p) { 
+        sommets.push_back(p); 
     }
 
     // Méthode de translation
     void translate(T dx,T dy);
+
+    double calcSurface() const {
+        double surface = 0;
+        int n = sommets.size();
+
+        // Erreur si le Polynome a - de 3 sommets
+        if (n < 3)
+        {
+            throw std::runtime_error("Le polynome a moins de 3 sommets");
+        }
+
+        for(int i=0; i < n; ++i ){
+            const Point2D<T>& p1 = sommets[i];
+            const Point2D<T>& p2 = sommets[(i + 1) % n]; // sommet suivant (retour à 0)
+
+            surface += static_cast<double>(p1.getX()) * static_cast<double>(p2.getY()) 
+                 - static_cast<double>(p2.getX()) * static_cast<double>(p1.getY());
+        }
+
+        if (surface == 0)
+        {
+            throw std::runtime_error("Le polynome est croisé");
+        }
+        
+        return std::abs(surface) / 2;
+
+    }
 
     // Surchage operator
     friend std::ostream& operator<< (std::ostream &o, Polygone<T>const& poly) {

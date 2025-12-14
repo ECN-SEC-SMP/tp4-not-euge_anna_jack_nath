@@ -111,10 +111,11 @@ classDiagram
         + getSurface() float
         + getForme() Polygone~int,float~
         + getType() string
+        + getPConstructible(void) float
         + setNumero(int numero) void
         + setProprietaire(string proprio) void
+        + setPConstructible(float) void
         + setForme(Polygone~int~ forme) void
-        + setType(string type) = 0*
     }
     class Carte {
         - listeParcelles: Vector~Parcelle*~
@@ -148,8 +149,6 @@ classDiagram
         + ZU()
         + ZU(float surfaceConstruite)
         + ~ZU()
-        + setSurfaceConstruite(float surfaceC) void
-        + getSurfaceConstruite() float
     }
     class ZAU {
         + ZAU()

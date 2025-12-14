@@ -45,8 +45,9 @@ protected:
     /**
      * @brief Pourcentage de surface constructible
      *
+     * This value is between 0 and 1
      */
-    int pConstructible;
+    float pConstructible;
 
 public:
     /**
@@ -57,27 +58,36 @@ public:
      * @param forme Forme de la parcelle
      *
      */
-    Parcelle(int num, std::string prop, Polygone<T> *forme)
+    Parcelle(int num, std::string prop, Polygone<T> *forme, float pConstructible)
     {
+        // Check that the number is a positive number
         if (num < 0)
         {
             throw std::invalid_argument("Num doit être supérieur ou égale à 0");
         }
+
+        // Check that the name of the owner is not empty
         if (prop.size() == 0)
         {
             throw std::invalid_argument("Prop ne peut pas être vide");
         }
 
+        // Check that the shape object is not null
         if (forme == nullptr)
         {
             throw std::invalid_argument("Forme ne peut pas être un pointeur null");
         }
 
+        // Verify that pConstructible is a percentage
+        if ((pConstructible < 0) || (pConstructible > 1)) {
+            throw std::invalid_argument("pConstructible doit etre entre 0 et 1, pConstructible : %f", pConstructible);
+        }
+
         this->forme = forme;
         this->numero = num;
         this->proprietaire = prop;
-        this->pConstructible = 0;
-        this->surface = 0; // On va récupérer la taille de forme
+        this->pConstructible = pConstructible;
+        this->surface = this->forme.; // On va récupérer la taille de forme
         this->type = "";   // Pour l'instant rien ?
     }
 
@@ -90,7 +100,8 @@ public:
     {
         this->numero = parc.getNumero();
         this->type = parc.getType();
-        this->forme = parc.getForme() : this->pConstructible = parc.getPConstructible();
+        this->forme = parc.getForme();
+        this->pConstructible = parc.getPConstructible();
         this->proprietaire = parc.getProprietaire();
         this->surface = parc.getSurface();
     }
@@ -186,11 +197,11 @@ public:
      */
     void setProprietaire(std::string proprio)
     {
-        if (prop.size() == 0)
+        if (proprio.size() == 0)
         {
             throw std::invalid_argument("Le propriétaire ne peut pas être vide");
         }
-        this->proprietaire = prop;
+        this->proprietaire = proprio;
     }
 
     /**
@@ -236,7 +247,7 @@ public:
         {
             throw std::invalid_argument("On ne peut pas avoir une forme de parcelle null");
         }
-        this->forme = forme
+        this->forme = forme;
     }
 
     /**
@@ -252,12 +263,14 @@ public:
         stringify += "\tType : " + this->type + "\n";
         stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
         stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
-        stringify += "\tSurface : " + this->surface + "\n";
+        stringify += "\tSurface : " + std::to_string(this->surface) + "\n";
+
+        return stringify;
     }
 
     friend std::ostream &operator<<(std::ostream &s, const Parcelle &parcelle)
     {
-        s << "(" << point.abscisse << ", " << point.ordonnee << ")";
+        s << "(" << parcelle.abscisse << ", " << parcelle.ordonnee << ")";
         return s;
     }
 };

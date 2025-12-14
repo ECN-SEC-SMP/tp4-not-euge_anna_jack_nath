@@ -176,7 +176,7 @@ public:
      *
      * @return int
      */
-    int getPConstructible(void) const
+    float getPConstructible(void) const
     {
         return this->pConstructible;
     }
@@ -225,20 +225,6 @@ public:
             throw std::invalid_argument("Le pourcentage constructible ne peut pas être inférieur à 0");
         }
         this->pConstructible = pConstructible;
-    }
-
-    /**
-     * @brief Set the Surface object
-     *
-     * @param surface La surface de la parcelle
-     */
-    void setSurface(float surface)
-    {
-        if (surface < 0)
-        {
-            throw std::invalid_argument("La surface ne peut pas être inférieur à 0");
-        }
-        this->surface = surface;
     }
 
     /**

@@ -32,12 +32,6 @@ public:
     Constructible(int num, std::string prop, float pConstructible, float surfaceConstruite, Polygone<T> *forme) : Parcelle<T>(num, prop, pConstructible, forme)
     {
         this->surfaceConstruite = surfaceConstruite;
-        
-        // TODO : Wait for getSurface correct implementation in Parcelle
-        // Verify that surfaceConstruite is less or equal to buildable area
-        // if (surfaceConstruite >= (this->getSurface() * this->pConstructible)) {
-        //     throw std::invalid_argument("surfaceConstruite ne peut pas etre superieur");
-        // }
     }
 
     /**

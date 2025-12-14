@@ -80,7 +80,6 @@ public:
         }
 
         // Verify that pConstructible is a percentage
-        std::cout << __func__ << " " << pConstructible << "\n";  
         if ((pConstructible < 0) || (pConstructible > 1)) {
             throw std::invalid_argument("pConstructible doit etre entre 0 et 1");
         }

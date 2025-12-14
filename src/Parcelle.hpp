@@ -45,8 +45,9 @@ protected:
     /**
      * @brief Pourcentage de surface constructible
      *
+     * This value is between 0 and 1
      */
-    int pConstructible;
+    float pConstructible;
 
 public:
     /**
@@ -54,29 +55,40 @@ public:
      *
      * @param num Numéro de la parcelle
      * @param prop Nom du propriétaire
+     * @param pConstructible Pourcentage constructible de la surface
      * @param forme Forme de la parcelle
      *
      */
-    Parcelle(int num, std::string prop, Polygone<T> *forme)
+    Parcelle(int num, std::string prop, float pConstructible, Polygone<T> *forme)
     {
+        // Check that the number is a positive number
         if (num < 0)
         {
             throw std::invalid_argument("Num doit être supérieur ou égale à 0");
         }
+
+        // Check that the name of the owner is not empty
         if (prop.size() == 0)
         {
             throw std::invalid_argument("Prop ne peut pas être vide");
         }
 
+        // Check that the shape object is not null
         if (forme == nullptr)
         {
             throw std::invalid_argument("Forme ne peut pas être un pointeur null");
         }
 
+        // Verify that pConstructible is a percentage
+        std::cout << __func__ << " " << pConstructible << "\n";  
+        if ((pConstructible < 0) || (pConstructible > 1)) {
+            throw std::invalid_argument("pConstructible doit etre entre 0 et 1");
+        }
+
         this->forme = forme;
         this->numero = num;
         this->proprietaire = prop;
-        this->pConstructible = 0;
+        this->pConstructible = pConstructible;
         this->surface = 0; // On va récupérer la taille de forme
         this->type = "";   // Pour l'instant rien ?
     }
@@ -102,6 +114,10 @@ public:
      */
     ~Parcelle(void)
     {
+        if (this->forme != nullptr) {
+            delete this->forme; // Free forme
+        }
+
         this->forme = nullptr;
     }
 

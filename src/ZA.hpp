@@ -5,12 +5,15 @@
 #include <string>
 #include <iostream>
 
+#define ZA_P_CONSTRUCTIBLE  0.1f
+#define ZA_MAX_SURFACE_CONSTRUITE  200 // m²
+
 /**
  * @brief Classe Zonne Agricole qui hérite de Constructible
  *
  */
 template <typename T>
-class ZA : public Constructible<T>
+class ZA : public Constructible
 {
 private:
     std::string typeCulture;
@@ -20,7 +23,8 @@ public:
      * @brief Construct a new ZA object
      *
      */
-    ZA(int num, std::string prop, std::string culture, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
+    ZA(int num, std::string prop, std::string culture, Polygone<T> *forme) 
+        : Constructible<T>(num, prop, 0, ZA_P_CONSTRUCTIBLE, forme)
     {
         this->type = "ZA";
         this->typeCulture = culture;

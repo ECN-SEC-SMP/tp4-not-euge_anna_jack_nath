@@ -17,6 +17,7 @@
 #include "FichierTest.hpp"
 #include "Point2DTest.hpp"
 #include "PolygoneTest.hpp"
+#include "CarteTest.hpp"
 #include "ZNTest.hpp"
 #include "ZUTest.hpp"
 #include "ZATest.hpp"
@@ -27,6 +28,7 @@ std::map<std::string, testFunc_t> testMap = {
     {"Fichier", FichierTest},
     {"Point2D", Point2DTest},
     {"Polygone", PolygoneTest},
+    {"Carte", CarteTest},
     {"ZNTest", ZNTest},
     {"ZUTest", ZUTests},
     {"ZATest", ZATest}

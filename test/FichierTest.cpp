@@ -16,6 +16,8 @@ void FichierTest(void) {
 
     Fichier fich = Fichier("assets/", "output/");
 
+    std::vector<Parcelle<int32_t>*> parcelleList;
+
     // Parcelle params
     char pc_type[50];
     uint16_t number;
@@ -99,6 +101,26 @@ void FichierTest(void) {
         else {
             std::cerr << "Unknow type : " << texte.at(i) << "\n";
         }
+        std::cout << "===\n";
+    }
+    
+    std::cout << "===\n";
+    std::cout << "===== Parsing\n";
+
+    texte = fich.open("Parcelles_short.txt");
+
+    for (uint8_t i = 0; i < texte.size(); i++)
+    {
+        std::cout << texte.at(i) << "\n";
+        
+        Parcelle<int32_t>* parcTmp = fich.getParcelle<int32_t>(texte.at(i));
+
+        parcelleList.push_back(parcTmp);
+
+        std::cout << "Parcelle objid : " << typeid(parcTmp).name() << "\n";
+
+        // TODO : Print object, need stringify
+
         std::cout << "===\n";
     }
 

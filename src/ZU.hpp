@@ -7,48 +7,16 @@
 template <typename T>
 class ZU : public Constructible<T>
 {
-private:
-    float surfaceConstruite;
-
 public:
-    /**
-     * @brief Construct a new ZU object
-     *
-     */
-    ZU(int num, std::string prop, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
-    {
-        this->type = "ZU";
-        this->surfaceConstruite = 0;
-    }
 
     /**
      * @brief Construct a new ZU object with a given constructed surface
      *
      */
-    ZU(int num, std::string prop, float surfaceC, Polygone<T> *forme) : Constructible<T>(num, prop, forme)
+    ZU(int num, std::string prop, float pConstructible, float surfaceC, Polygone<T> *forme)
+        : Constructible<T>(num, prop, pConstructible, surfaceC, forme)
     {
-        this->surfaceConstruite = surfaceC;
         this->type = "ZU";
-    }
-
-    /**
-     * @brief Get the Surface Construite of the object
-     *
-     * @return float
-     */
-    float getSurfaceConstruite() const
-    {
-        return this->surfaceConstruite;
-    }
-
-    /**
-     * @brief Set the Surface Construite of the object
-     *
-     * @param surfaceC
-     */
-    void setSurfaceConstruite(float surfaceC)
-    {
-        this->surfaceConstruite = surfaceC;
     }
 
     /**

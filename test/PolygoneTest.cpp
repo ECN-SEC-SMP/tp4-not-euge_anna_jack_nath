@@ -41,4 +41,13 @@ void PolygoneTest() {
     poly1.translate(10, 20);
     std::cout << "Polygone après translation : " << poly1 << std::endl;
     std::cout << "Polygone copié (toujours non modifié) : " << poly2 << std::endl;
+
+    // Surface calculée
+    std::cout << "Surface du polygone initial (triangle 0,0 - 1,0 - 0,1) : "
+    << poly2.calcSurface() << std::endl;
+
+    // Après ajout d’un point (quadrilatère)
+    std::cout << "Surface du polygone modifié : "
+    << poly1.calcSurface() << std::endl;
+
 }

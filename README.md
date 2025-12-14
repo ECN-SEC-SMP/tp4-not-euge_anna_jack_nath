@@ -102,7 +102,7 @@ classDiagram
         # proprietaire: string
         # surface: float
         # forme: Polygone~int~
-        # pConstructible: int
+        # pConstructible: float
         + Parcelle(int num, string prop, Polygone~int,float~ forme)
         + Parcelle(Parcelle parc)
         + ~Parcelle()
@@ -127,10 +127,10 @@ classDiagram
     }
     class Constructible {
         <<abstract>>
-        - surfaceCons float
-        + surfaceConstructible() = 0*
+        - surfaceConstruite float
         + getSurfaceConstructible() float
-        + setSurfaceConstructible(float surface) void
+        + getSurfaceConstruite() float
+        + setSurfaceConstruite(float surface) void
     }
     class ZN {
         + ZN()
@@ -180,6 +180,8 @@ La classe Parcelle permet de définir une parcelle du PLU. Elle contient un `num
 Parcelle dispose de setter et getter pour chacune de ses propriétés.
 Elle à également une méthode virtuel pure `setType` permettant aux enfants héritants de pouvoir définir leur propre type (ZA, ZU, ZAU, ZN).
 
+pConstructible est un float de 0 à 1 pour cacluler plus facilement les surfaces constructibles.
+
 **Classe Carte**
 -
 La classe Carte défini le PLU, permettant de voir les différentes parcelles. Elle contient une `surface` et une liste de parcelles `listeParcelles` de type Parcelle.  
@@ -187,7 +189,7 @@ La carte peut être instancié à partir d'un fichier texte mais également d'ê
 
 **Classe Constructible**
 -
-La classe Constructible est une classe purement abstraite, permettant de définir une interface pour les parcelles constructible. Cette classe hérite de `Parcelle` mais n'est pas instantiable (classe abstraite). Elle a, en plus des propriétés de `Parcelle`, une propriété `surfaceCons` et une méthode `surfaceConstructible` qui permet, en fonction de la classe fille les utilisants, de définir d'autre comportement.
+La classe Constructible est une classe, permettant de définir une interface pour les parcelles constructible. Cette classe hérite de `Parcelle`. Elle a, en plus des propriétés de `Parcelle`, une propriété `surfaceConstructible`.
 
 **Classe ZN**
 -

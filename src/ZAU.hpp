@@ -24,15 +24,27 @@ public:
     ~ZAU() {}
 
     /**
+     * @brief Redefine tostring operator for object
+     * 
+     * @return std::string 
+     */
+    operator std::string() const
+    {
+        std::string stringify = Parcelle<int>::operator std::string();
+
+        return stringify;
+    }
+
+    /**
      * @brief Print the type of the object
      *
      * @param s
-     * @param type
+     * @param zau
      * @return ZAU
      */
-    friend std::ostream &operator<<(std::ostream &s, const ZAU &type)
+    friend std::ostream &operator<<(std::ostream &s, const ZAU &zau)
     {
-        s << "(" << "Type " << type.Constructible::type << ")";
+        s << std::string(zau);
         return s;
     }
 };

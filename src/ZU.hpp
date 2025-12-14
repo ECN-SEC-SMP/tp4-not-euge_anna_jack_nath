@@ -58,15 +58,27 @@ public:
     ~ZU() {}
 
     /**
+     * @brief Redefine tostring operator for object
+     * 
+     * @return std::string 
+     */
+    operator std::string() const
+    {
+        std::string stringify = Parcelle<int>::operator std::string();
+
+        return stringify;
+    }
+
+    /**
      * @brief Print the type of the object
      *
      * @param s
-     * @param type
+     * @param zu
      * @return ZU
      */
-    friend std::ostream &operator<<(std::ostream &s, const ZU &type)
+    friend std::ostream &operator<<(std::ostream &s, const ZU &zu)
     {
-        s << "(" << "Type " << type.type << ")";
+        s << std::string(zu);
         return s;
     }
 };

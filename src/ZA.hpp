@@ -53,15 +53,28 @@ public:
     ~ZA() {}
 
     /**
+     * @brief Redefine tostring operator for object
+     *
+     * @return std::string
+     */
+    operator std::string() const
+    {
+        std::string stringify = Parcelle<int>::operator std::string();
+
+        stringify += "\tCulture : " + this->typeCulture;
+
+        return stringify;
+    }
+    /**
      * @brief Print the type of the object
      *
      * @param s
-     * @param type
+     * @param za
      * @return ZA
      */
-    friend std::ostream &operator<<(std::ostream &s, const ZA &type)
+    friend std::ostream &operator<<(std::ostream &s, const ZA &za)
     {
-        s << "(" << "Type " << type.type << ")";
+        s << std::string(za);
         return s;
     }
 };

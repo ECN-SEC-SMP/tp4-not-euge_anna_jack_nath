@@ -25,15 +25,27 @@ public:
     ~ZN() {}
 
     /**
+     * @brief Redefine tostring operator for object
+     * 
+     * @return std::string 
+     */
+    operator std::string() const
+    {
+        std::string stringify = Parcelle<int>::operator std::string();
+
+        return stringify;
+    }
+
+    /**
      * @brief Print the type of the object
      *
      * @param s
-     * @param type
+     * @param zn
      * @return ZN
      */
-    friend std::ostream &operator<<(std::ostream &s, const ZN &zone)
+    friend std::ostream &operator<<(std::ostream &s, const ZN &zn)
     {
-        s << "(" << "Type " << zone.getType() << ")";
+        s << std::string(zn);
         return s;
     }
 };

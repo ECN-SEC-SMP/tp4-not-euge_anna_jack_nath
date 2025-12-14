@@ -240,11 +240,11 @@ public:
         this->forme = forme;
     }
 
-    virtual operator std::string() const
+    operator std::string() const
     {
         std::string stringify = "Parcelle n° " + std::to_string(this->numero) + "\n";
         stringify += "\tType : " + this->type + "\n";
-        // stringify += "\tForme : " + this->getForme()->getSommets() + "\n";
+        stringify += "\tPolygone : " + std::string(*this->getForme()) + "\n";
         stringify += "\tPropriétaire : " + this->getProprietaire() + "\n";
         stringify += "\tSurface : " + std::to_string(this->surface) + "\n";
 
@@ -253,7 +253,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &s, const Parcelle &parcelle)
     {
-        s << "(" << parcelle.abscisse << ", " << parcelle.ordonnee << ")";
+        s << std::string(parcelle);
         return s;
     }
 };

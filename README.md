@@ -25,7 +25,7 @@ Run
 ```
 
 ## Architecture
-Cet section défini l'architecture du projet PLU.
+Cette section défini l'architecture du projet PLU.
 
 
 ### Diagramme de classe
@@ -40,8 +40,8 @@ classDiagram
     Constructible <|-- ZAU
     Constructible <|-- ZU
     Constructible <|-- ZA
-    Point~T~ *-- Polygone
-    Polygone *-- Parcelle
+    Point~T~ --* Polygone
+    Polygone <-- Parcelle
     Carte *-- Parcelle
 
     class Point~T~{
@@ -89,7 +89,7 @@ classDiagram
         + setType(string type) = 0*
     }
     class Carte {
-        - listeParcelles: Vector~Parcelle~
+        - listeParcelles: Vector~Parcelle*~
         - surface: float
         + Carte()
         + Carte(Vector~Parcelle~ parcelles)
@@ -103,7 +103,6 @@ classDiagram
         + surfaceConstructible() = 0*
         + getSurfaceConstructible() float
         + setSurfaceConstructible(float surface) void
-        + construire(Polygone~int~ poly) boolean
     }
     class ZN {
         + ZN()
@@ -131,7 +130,11 @@ classDiagram
 ```
 
 ### Détail de l'architecture
- 
+Nous avons choisis de ne pas faire hériter **ZA** de **ZN** car ils n'ont rien en commun à l'origine, hormis être des **Parcelles**. **ZA** est constructible mais pas **ZN** et **ZA** dispose d'une propriété supplémentaire que **ZN**.  
+Nous avons également toutes nos classes qui sont **template** car à l'origine dans le sujet il était demandé d'instancier uniquement nos classes template en **int** mais cela nous faisais perdre l'intérêt du type template. Grâce à cela nous pouvons utiliser les autres types numériques (float, double, ...). Les types autres que les types standards numériques ne sont pas supportés.
+
+
+### Détail des classes
 **Classe Point**
 - 
 La classe Point permet de définir un *Point* dans un plan en 2D et dispose de getter et setter pour ses positions X et Y.

@@ -207,3 +207,9 @@ La classe ZAU défini les **Zones à Urbaniser**. Cette classe hérite directeme
 **Classe ZU**
 -
 La classe ZU défini les **Zones Urbaines**. Cette classe hérite directement de `Constructible` ce qui signifie qu'elle est constructible comme une **ZAU**. Elle possède également une propriété supplémentaire, `surfaceConstruite` permettant de connaitre la surface déjà construite au sein de la **ZAU**. Elle a également le setter et getter associé.
+
+**Classe Fichier**
+-
+La classe Fichier est une classe utilitaire permettant de lire et écrire des fichiers.  
+Elle est conçue pour lire les fichiers de parcelle.  
+En plus de la lecture et de l'écriture, la classe permet de créer les objets **Zx** à partir du texte.

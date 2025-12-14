@@ -88,7 +88,7 @@ public:
         this->numero = num;
         this->proprietaire = prop;
         this->pConstructible = pConstructible;
-        this->surface = 0; // On va récupérer la taille de forme
+        this->surface = this->forme->calcSurface(); // On va récupérer la taille de forme
         this->type = "";   // Pour l'instant rien ?
     }
 
